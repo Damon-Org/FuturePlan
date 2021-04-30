@@ -8,6 +8,11 @@
     - [The Problems](#the-problems)
     - [Possible solution](#possible-solution)
     - [Future](#future)
+ - [Socket Server](#socket-server)
+    - [Current Environment](#current-environment)
+    - [Ideal Solution](#ideal-solution)
+ - [Certificate Distribution](#certificate-distribution)
+    - [Methods](#methods)
 
 ## Short
 
@@ -17,6 +22,7 @@
  - Create a mobile app that hooks into your voice assistant
  - Web interface with integrated search tools
  - Secure Certificate Distribution
+ - Plug-in new music services
 
 ****
 
@@ -60,7 +66,7 @@ It uses a secure websocket server that relies on Letsencrypt certificates, these
 
 ### Ideal Solution
 
-Having a TCP socket server that is fast and uses multiprocessing, this is by design awful to work with. How do you keep track of connected clients, how would you send a message to clients that are connected on a different thread than the current on receiving or sending the message, etc...
+Having a TCP socket server that is fast and uses multiprocessing, this is by design awful to work with. How do you keep track of connected clients, how would you send a message to clients that are connected one a different thread than the current on receiving or sending the message, etc...
 NodeJS has a [clustering](https://nodejs.org/api/cluster.html) module which has a build in way of communication between child processes, as an alternative we can use Redis to make this communication more efficient and less reliant on this one way of communication. We can still use clustering to use one shared socket and make efficient use of a multicore environment.
 This server should also be very secure as it's a centralized attack vector.
 
@@ -75,3 +81,7 @@ I made a proof of concept that can automatically refresh certificates through Di
 ### Methods
 
 Services should be able to get certificates from this central server is several ways, through streaming it over a secure socket or downloading it to local disk.
+
+****
+
+`More coming later...`
